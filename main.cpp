@@ -108,6 +108,10 @@ int jugVsJug(TableroDeJuego& tableroDeJuego, int jugadorEnTurno) {
 				jugadorEnTurno = (jugadorEnTurno == 1) ? 2 : 1; // Cambiar de jugador
 			}
 		} else if (tecla == GameUI::ESCAPE) { 
+			for(int i = 0; i < 3; i++){
+				tableroDeJuego.eliminarCasilla(1);
+				tableroDeJuego.eliminarCasilla(2);
+			}
 			return 0; // Partida pausada o terminada 
 		} /*else if (key == GameUI::G) { 
 			// Lógica para guardar el juego 
