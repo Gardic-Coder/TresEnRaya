@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o Presentacion/GameUI.o Logica/GameLogic.o
-LINKOBJ  = main.o Presentacion/GameUI.o Logica/GameLogic.o
+OBJ      = main.o Presentacion/GameUI.o Logica/GameLogic.o Logica/TableroDeJuego.o
+LINKOBJ  = main.o Presentacion/GameUI.o Logica/GameLogic.o Logica/TableroDeJuego.o
 LIBS     = -L"D:/Dev-Cpp/TDM-GCC-64/lib" -L"D:/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"D:/Dev-Cpp/TDM-GCC-64/include" -I"D:/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"D:/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include"
 CXXINCS  = -I"D:/Dev-Cpp/TDM-GCC-64/include" -I"D:/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"D:/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include" -I"D:/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include/c++"
@@ -32,3 +32,6 @@ Presentacion/GameUI.o: Presentacion/GameUI.cpp
 
 Logica/GameLogic.o: Logica/GameLogic.cpp
 	$(CPP) -c Logica/GameLogic.cpp -o Logica/GameLogic.o $(CXXFLAGS)
+
+Logica/TableroDeJuego.o: Logica/TableroDeJuego.cpp
+	$(CPP) -c Logica/TableroDeJuego.cpp -o Logica/TableroDeJuego.o $(CXXFLAGS)

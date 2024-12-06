@@ -14,6 +14,7 @@ public:
 	
     void mostrarMenu(int cursor, vector<string> opcionesMenu);
     Tecla getTecla();
+    void mostrarTablero(const vector<vector<int>>& tablero, const pair<int, int>& cursor) const;
     void acercaDelJuego();
 	void ayuda();
 };

@@ -10,32 +10,66 @@
 using namespace std;
 
 void GameUI::mostrarMenu(int cursor, std::vector<string> opcionesMenu) {
-	system("cls"); 
-	cout << PURPURA << SEPARADOR << RESET << endl;
+	system("cls");
+	cout << endl << PURPURA << SEPARADOR << RESET << endl << endl;
 	for(size_t i = 0; i < opcionesMenu.size(); ++i) { // Se repite hasta imprimir todas las opciones del menu.
 		if(i == cursor) { // Si se va a imprimir la posicion donde esta el cursor se imprime una flecha.
-			cout << YELLOW << "			->>" << RESET;
+			cout << YELLOW << "				   ->>" << RESET;
 		} else { // Sino se deja un espacio.
-			cout << "				";
+			cout << "					";
 		}
 		cout << opcionesMenu[i] << endl;
 	}
-	cout << PURPURA << SEPARADOR << RESET << endl;
+	cout << endl << PURPURA << SEPARADOR << RESET << endl;
 }
 
 GameUI::Tecla GameUI::getTecla() {
-	int c = _getch(); 
+	int c = _getch();
 	switch (c) {
-		case 72: return GameUI::ARRIBA; 
-		case 80: return GameUI::ABAJO; 
-		case 75: return GameUI::IZQUIERDA; 
-		case 77: return GameUI::DERECHA;
-		case 13: return GameUI::ENTER;
-		case 27: return GameUI::ESCAPE;
+		case 72:
+			return GameUI::ARRIBA;
+		case 80:
+			return GameUI::ABAJO;
+		case 75:
+			return GameUI::IZQUIERDA;
+		case 77:
+			return GameUI::DERECHA;
+		case 13:
+			return GameUI::ENTER;
+		case 27:
+			return GameUI::ESCAPE;
 		case 'g':
-		case 'G':  return GameUI::G;
-		default:  return GameUI::OTRA; // Valor por defecto 
+		case 'G':
+			return GameUI::G;
+		default:
+			return GameUI::OTRA; // Valor por defecto
 	}
+}
+
+void GameUI::mostrarTablero(const vector<vector<int>>& tablero, const pair<int, int>& cursor) const {
+	system("cls");
+	cout << endl << PURPURA << SEPARADOR << RESET << endl << endl;
+	for(int i = 0; i < tablero.size(); i++) {
+		cout << "						";
+		for(int j = 0; j < tablero[i].size(); j++) {
+			if(i == cursor.first && j == cursor.second) {
+				cout << VERDE;
+			} else {
+				cout << PURPURA;
+			}
+			cout << "{ ";
+			cout << YELLOW;
+			cout << (tablero[i][j] == 1 ? "X" : tablero[i][j] == 2 ? "O" : " ");
+			if(i == cursor.first && j == cursor.second) {
+				cout << VERDE;
+			} else {
+				cout << PURPURA;
+			}
+			cout << " }" << RESET;
+		}
+		cout << endl << endl;
+	}
+	cout << PURPURA << SEPARADOR << RESET << endl;
 }
 
 void GameUI::acercaDelJuego() {
