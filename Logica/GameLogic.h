@@ -4,6 +4,8 @@
 #include <vector>
 #include <queue>
 #include <utility>
+#include <cstdlib> // para rand() 
+#include <ctime> // para time()
 #include "../Presentacion/GameUI.h"
 
 using namespace std;
@@ -28,4 +30,15 @@ class TableroDeJuego {
 		int comprobarVictoria() const;
 		const vector<vector<int>>& getTablero() const;
 		static const int SIZE = 3;
+};
+
+class Bot {
+	private:
+		int minimax(vector<vector<int>>& tablero, int profundidad, bool esMaximizador, int jugador); 
+		int evaluar(const vector<vector<int>>& tablero, int jugador); 
+		bool hayMovimientosDisponibles(const vector<vector<int>>& tablero);
+	
+	public:
+		Bot() { srand(static_cast<unsigned int>(time(nullptr))); }
+		pair<int, int> hacerMovimiento(const vector<vector<int>>& tablero, int jugador);
 };
