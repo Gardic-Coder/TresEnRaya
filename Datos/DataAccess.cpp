@@ -1,34 +1,34 @@
 // Datos/DataAccess.h
 #include "DataAccess.h"
-#include <fstream.h>
+#include <fstream>
+
+#define A 3
 
 using namespace std;
 
-void DataAccess::guardarR(TableroDeJuego tablero, vector<int> resultados[][] ){
-	//Guarda los valores del tablero de la ultima partida
+void DatosdeJuego::definirV(vector<vector<int>> r){
 	
-	vector<int> resultados [s][s];
-	
-	for (int i = 0; i <= s; i++){
+	for(int i = 0; i < A; i++){
 		
-		for (int j = 0; j <= s; j++ ){
-			
-			tablero[i][j] = resultados[i][j];
-		}
+		r.resize(A, vector<int>(A));
 		
 	}
 	
-	return resultados;
+}
+
+void DatosdeJuego::guardarR(TableroDeJuego& tablero){
+	//Guarda los valores del tablero de la ultima partida
+	
+	vector<vector<int>> r = tablero.getTablero();
+	
 };
 
-void DataAccess::crearF(vector<int> resultados[][]){
+void DatosdeJuego::crearF(vector<vector<int>> r){
 	//Escribe los resultados en un .txt
 	
 	int n = 3;
 	
 	ofstream hojaResult("Datos de partida.txt");
-	
-	hojaResult.open();
 	
 	hojaResult << "Resultados del juego:" << endl;
 	
@@ -36,7 +36,7 @@ void DataAccess::crearF(vector<int> resultados[][]){
 		
 		for (int j = 0; j < n; j++){
 			
-			switch(resultados[i][j]){
+			switch(r[i][j]){
 				case 1: hojaResult << "X" << "\n";
 						break;
 				case 2: hojaResult << "O" << "\n";
@@ -52,7 +52,5 @@ void DataAccess::crearF(vector<int> resultados[][]){
 	}
 	
 	hojaResult.close();
-	
-	return 0;
 	
 };

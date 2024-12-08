@@ -1,18 +1,19 @@
 // Datos/DataAccess.h
-#pragma once
 #include <vector>
+#include "../Logica/GameLogic.h"
 
 using namespace std;
-
 
 class DatosdeJuego{
 	
 	private:
-		vector<int> resultados [3][3];
+		vector<vector<int>> r;
+		
 		
 	public:
 		DatosdeJuego();
-		void guardarR(TableroDeJuego tablero, vector<int> resultados[][]);
-		void crearF(vector<string> resultados);
+		void definirV(vector<vector<int>> r);
+		void guardarR(TableroDeJuego& tablero);
+		void crearF(vector<vector<int>> r);
 		
 };
