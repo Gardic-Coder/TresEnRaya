@@ -38,7 +38,7 @@ int botVsBot(TableroDeJuego& tableroDeJuego);
 
 int main() {
 	bool salir = false;
-	int seleccion;
+	int seleccion, ganador;
 	TableroDeJuego tableroDeJuego;
 
 	do {
@@ -49,7 +49,7 @@ int main() {
 				seleccion = menu(opcionesSubMenu);
 				switch(seleccion) {
 					case 0: {
-						int ganador = jugVsJug(tableroDeJuego, 1);
+						ganador = jugVsJug(tableroDeJuego, 1);
 						if(ganador != 0){ 
 							cout << "					     ¡El " << YELLOW << "JUGADOR " << ganador << RESET << " ha ganado!" << endl;
 							_getch();
@@ -57,7 +57,7 @@ int main() {
 						break;
 					}
 					case 1: {
-						int ganador = jugVsBot(tableroDeJuego, 1);
+						ganador = jugVsBot(tableroDeJuego, 1);
 						if(ganador != 0){
 							if(ganador == 1) {
 								cout << "					     ¡El " << YELLOW << "JUGADOR " << ganador << RESET << " ha ganado!" << endl;
@@ -69,7 +69,7 @@ int main() {
 						break;
 					}
 					case 2: {
-						int ganador = botVsBot(tableroDeJuego);
+						ganador = botVsBot(tableroDeJuego);
 						if(ganador != 0){ 
 							cout << "					     ¡El " << YELLOW << "BOT " << ganador << RESET << " ha ganado!" << endl;
 							_getch();
@@ -80,7 +80,30 @@ int main() {
 				break;
 			}
 			case 1: {
-				
+				DataAccess datosRecuperados;
+				datosRecuperados.cargarPartida();
+				tableroDeJuego.setTablero(datosRecuperados.getTablero());
+				tableroDeJuego.setMovJugador1(datosRecuperados.getMovJug1());
+				tableroDeJuego.setMovJugador2(datosRecuperados.getMovJug2());
+				int n = datosRecuperados.getModoDeJuego();
+				if(n == 1) {
+					ganador = jugVsJug(tableroDeJuego, 1);
+					if(ganador != 0){ 
+						cout << "					     ¡El " << YELLOW << "JUGADOR " << ganador << RESET << " ha ganado!" << endl;
+					}
+				} else if(n == 2) {
+					ganador = jugVsBot(tableroDeJuego, 1);
+					if(ganador != 0){
+						if(ganador == 1) {
+							cout << "					     ¡El " << YELLOW << "JUGADOR " << ganador << RESET << " ha ganado!" << endl;
+						} else {
+							cout << "					     ¡El " << YELLOW << "BOT" << RESET << " ha ganado!" << endl;
+						}
+					}
+				} else {
+					cout << endl << YELLOW <<"					     NO HAY PARTIDA GUARDADA" << RESET << endl;
+				}
+				_getch();
 				break;
 			}
 			case 2: {
@@ -123,6 +146,10 @@ int jugVsJug(TableroDeJuego& tableroDeJuego, int jugadorEnTurno) {
 				jugadorEnTurno = (jugadorEnTurno == 1) ? 2 : 1; // Cambiar de jugador.
 			}
 		}
+		if(tecla == GameUI::G) {
+			DataAccess datos(tableroDeJuego, 1);
+			datos.guardarPartida();
+		}
 		gameUI.mostrarTablero(tableroDeJuego.getTablero(), cursor);
 		int ganador = tableroDeJuego.comprobarVictoria();
 		if(ganador != 0) {
@@ -148,6 +175,10 @@ int jugVsBot(TableroDeJuego& tableroDeJuego, int jugadorEnTurno) {
                     jugadorEnTurno = 2; // Cambiar al bot
                 }
             }
+            if(tecla == GameUI::G) {
+				DataAccess datos(tableroDeJuego, 2);
+				datos.guardarPartida();
+			}
         } else { // Turno del bot
             // Simular que el bot está pensando
             Sleep(1500); // Retraso de 1.5 segundos (1500 milisegundos)

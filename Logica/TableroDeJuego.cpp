@@ -64,3 +64,23 @@ int TableroDeJuego::comprobarVictoria() const {
 const vector<vector<int>>& TableroDeJuego::getTablero() const { 
 	return tablero; 
 }
+
+const queue<pair<int, int>>& TableroDeJuego::getMovJugador1() const { 
+	return movJugador1; 
+} 
+
+const queue<pair<int, int>>& TableroDeJuego::getMovJugador2() const { 
+	return movJugador2; 
+}
+
+void TableroDeJuego::setTablero(const vector<vector<int>>& nuevoTablero) { 
+	tablero = nuevoTablero; 
+} 
+
+void TableroDeJuego::setMovJugador1(const queue<pair<int, int>>& nuevosMovimientos) { 
+	movJugador1 = nuevosMovimientos; 
+} 
+
+void TableroDeJuego::setMovJugador2(const queue<pair<int, int>>& nuevosMovimientos) { 
+	movJugador2 = nuevosMovimientos; 
+}
