@@ -1,19 +1,30 @@
 // Datos/DataAccess.h
+
+#pragma once
 #include <vector>
-#include "../Logica/GameLogic.h"
+#include <queue>
+#include <utility>
+#include <string>
+#include <fstream>
+#include <sstream>
+//#include <iostream>
 
 using namespace std;
 
-class DatosdeJuego{
-	
+class DataAccess {
 	private:
-		vector<vector<int>> r;
-		
-		
+		vector<vector<int>> tablero;
+		int modoDeJuego;
+		queue<pair<int, int>> movJug1;
+		queue<pair<int, int>> movJug2;
+	
 	public:
-		DatosdeJuego();
-		void definirV(vector<vector<int>> r);
-		void guardarR(TableroDeJuego& tablero);
-		void crearF(vector<vector<int>> r);
-		
+		DataAccess();
+		DataAccess(TableroDeJuego tableroDeJuego, int modo);
+		void guardarPartida();
+		void cargarPartida();
+		const vector<vector<int>>& getTablero() const;
+		const queue<pair<int, int>>& getMovJug1() const;
+		const queue<pair<int, int>>& getMovJug2() const;
+		const int& getModoDeJuego() const;
 };

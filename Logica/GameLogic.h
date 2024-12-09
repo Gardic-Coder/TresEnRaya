@@ -29,6 +29,11 @@ class TableroDeJuego {
 		bool capturarCasilla(int jugador, const pair<int, int>& posicion);
 		int comprobarVictoria() const;
 		const vector<vector<int>>& getTablero() const;
+		const queue<pair<int, int>>& getMovJugador1() const;
+		const queue<pair<int, int>>& getMovJugador2() const;
+		void setTablero(const vector<vector<int>>& nuevoTablero);
+		void setMovJugador1(const queue<pair<int, int>>& nuevosMovimientos);
+		void setMovJugador2(const queue<pair<int, int>>& nuevosMovimientos);
 		static const int SIZE = 3;
 };
 
