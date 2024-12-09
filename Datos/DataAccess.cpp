@@ -6,6 +6,8 @@
 
 using namespace std;
 
+DatosdeJuego::DatosdeJuego() : r(A, vector<int>(A, 0)) {}
+
 void DatosdeJuego::definirV(vector<vector<int>> r){
 	
 	for(int i = 0; i < A; i++){
@@ -30,18 +32,18 @@ void DatosdeJuego::crearF(vector<vector<int>> r){
 	
 	ofstream hojaResult("Datos de partida.txt");
 	
-	hojaResult << "Resultados del juego:" << endl;
+	hojaResult << "Partida Guardada:" << endl;
 	
 	for (int i = 0; i < n; i++){
 		
 		for (int j = 0; j < n; j++){
 			
 			switch(r[i][j]){
-				case 1: hojaResult << "X" << "\n";
+				case 1: hojaResult << "X" << "\t";
 						break;
-				case 2: hojaResult << "O" << "\n";
+				case 2: hojaResult << "O" << "\t";
 						break;
-				default: hojaResult << "-" << "\n";
+				default: hojaResult << "-" << "\t";
 						break;
 			}	
 			

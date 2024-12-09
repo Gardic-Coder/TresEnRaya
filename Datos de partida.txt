@@ -1,0 +1,4 @@
+Partida Guardada:
+X	O	-	
+X	O	-	
+-	-	-	

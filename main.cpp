@@ -16,6 +16,7 @@ using namespace std;
 GameUI gameUI;
 GameLogic gameLogic;
 GameUI::Tecla tecla;
+DatosdeJuego datos;
 
 vector<string> opcionesMenuPrincipal = { // Aca se guardan las cadenas de texto utilizadas en el menu principal.
 	"INICIAR JUEGO",
@@ -123,6 +124,9 @@ int jugVsJug(TableroDeJuego& tableroDeJuego, int jugadorEnTurno) {
 				jugadorEnTurno = (jugadorEnTurno == 1) ? 2 : 1; // Cambiar de jugador.
 			}
 		}
+		if(tecla == GameUI::G) {
+			datos.crearF(tableroDeJuego.getTablero());
+		}
 		gameUI.mostrarTablero(tableroDeJuego.getTablero(), cursor);
 		int ganador = tableroDeJuego.comprobarVictoria();
 		if(ganador != 0) {
@@ -148,6 +152,9 @@ int jugVsBot(TableroDeJuego& tableroDeJuego, int jugadorEnTurno) {
                     jugadorEnTurno = 2; // Cambiar al bot
                 }
             }
+            if(tecla == GameUI::G) {
+				datos.crearF(tableroDeJuego.getTablero());
+			}
         } else { // Turno del bot
             // Simular que el bot está pensando
             Sleep(1500); // Retraso de 1.5 segundos (1500 milisegundos)
