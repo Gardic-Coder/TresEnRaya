@@ -25,6 +25,7 @@ bool TableroDeJuego::capturarCasilla(int jugador, const pair<int, int>& posicion
 }
 
 void TableroDeJuego::eliminarCasilla(int jugador) {
+	
 	if(jugador == 1 && !movJugador1.empty()) { 
 		int fila = movJugador1.front().first;
 		int columna = movJugador1.front().second;
@@ -41,11 +42,15 @@ void TableroDeJuego::eliminarCasilla(int jugador) {
 }
 
 int TableroDeJuego::comprobarVictoria() const { 
+
+
 	for(int i = 0; i < SIZE; ++i) { 
+	
 		// Verificar filas 
 		if(tablero[i][0] != 0 && tablero[i][0] == tablero[i][1] && tablero[i][1] == tablero[i][2]) { 
 			return tablero[i][0]; 
 		} 
+		
 		// Verificar columnas 
 		if(tablero[0][i] != 0 && tablero[0][i] == tablero[1][i] && tablero[1][i] == tablero[2][i]) { 
 			return tablero[0][i]; 

@@ -1,4 +1,5 @@
 // Datos/DataAccess.h
+
 #pragma once
 #include <vector>
 #include <queue>
@@ -7,7 +8,6 @@
 #include <fstream>
 #include <sstream>
 //#include <iostream>
-#include "../Logica/GameLogic.h"
 
 using namespace std;
 
